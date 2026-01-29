@@ -3,6 +3,10 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+# TourAssist artifacts
+tourassist/eval_output/
+tourassist/data/tourassist.db
+
 # C extensions
 *.so
 
