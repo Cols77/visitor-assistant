@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TourAssist — Chat</title>
+    <link rel="stylesheet" href="/ui/styles.css" />
+  </head>
+  <body>
+    <div class="ambient">
+      <div class="glow glow-a"></div>
+      <div class="glow glow-b"></div>
+      <div class="grain"></div>
+    </div>
+
+    <main class="shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">TourAssist</p>
+          <h1>Visitor concierge, tuned for your content.</h1>
+          <p class="subhead">
+            Connect a tenant, drop a question, and watch the assistant respond with grounded answers.
+          </p>
+        </div>
+        <div class="status-card" id="statusCard">
+          <div class="status-row">
+            <span class="label">Session</span>
+            <span class="value" id="sessionBadge">Not connected</span>
+          </div>
+          <div class="status-row">
+            <span class="label">Latency</span>
+            <span class="value" id="latencyBadge">--</span>
+          </div>
+          <div class="status-row">
+            <span class="label">Tokens</span>
+            <span class="value" id="tokensBadge">--</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="panel">
+        <div class="panel-left">
+          <h2>Connect</h2>
+          <p class="panel-hint">Use an existing tenant + API key, or create a new tenant.</p>
+          <div class="field">
+            <label for="tenantId">Tenant ID</label>
+            <input id="tenantId" type="text" placeholder="museum-nyc" />
+          </div>
+          <div class="field">
+            <label for="apiKey">API Key</label>
+            <input id="apiKey" type="password" placeholder="paste your key" />
+          </div>
+          <div class="field">
+            <label for="sessionId">Session ID</label>
+            <input id="sessionId" type="text" placeholder="session-001" />
+          </div>
+          <div class="actions">
+            <button class="btn primary" id="saveConfig">Save Session</button>
+            <button class="btn ghost" id="createTenant">Create Tenant</button>
+          </div>
+          <div class="notice" id="tenantNotice">No tenant connected yet.</div>
+        </div>
+
+        <div class="panel-right">
+          <div class="chat-header">
+            <div>
+              <h2>Chat</h2>
+              <p class="panel-hint">Messages are sent to <span class="mono">POST /chat</span>.</p>
+            </div>
+            <button class="btn ghost small" id="clearChat">Clear</button>
+          </div>
+
+          <div class="chat-window" id="chatWindow">
+            <div class="bubble assistant">
+              <p>Hi! Ask me anything about your content. I can answer using your ingested documents.</p>
+            </div>
+          </div>
+
+          <form class="composer" id="chatForm">
+            <textarea id="messageInput" rows="2" placeholder="Ask about exhibits, hours, or nearby attractions..."></textarea>
+            <input id="chatAttachFileInput" class="file-input hidden" type="file" accept=".pdf,.txt,.md" multiple />
+            <input
+              id="chatAttachFolderInput"
+              class="file-input hidden"
+              type="file"
+              accept=".pdf,.txt,.md"
+              directory
+              webkitdirectory
+              mozdirectory
+              multiple
+            />
+            <div class="attach-wrap">
+              <button class="btn ghost attach" type="button" id="chatAttachBtn" aria-label="Attach file or folder">
+              <span class="clip-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                  <path
+                    d="M7.5 12.5 14.4 5.6a3 3 0 0 1 4.2 4.2l-8.5 8.5a4.5 4.5 0 0 1-6.4-6.4l7.8-7.8"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <span class="clip-label">Attach</span>
+              </button>
+              <div class="attach-menu" id="attachMenu" aria-hidden="true">
+                <button type="button" class="attach-option" id="attachFiles">File(s)</button>
+                <button type="button" class="attach-option" id="attachFolder">Folder</button>
+              </div>
+            </div>
+            <button class="btn primary" type="submit" id="sendBtn">Send</button>
+          </form>
+          <div class="footnote" id="chatAttachNote">No attachment selected.</div>
+          <div class="progress" id="ingestProgress" aria-hidden="true">
+            <div class="progress-bar" id="ingestProgressBar"></div>
+            <span class="progress-text" id="ingestProgressText">0%</span>
+          </div>
+          <div class="notice" id="ingestNotice">No file uploaded yet.</div>
+          <div class="footnote">
+            Retrieved docs: <span id="docsBadge">--</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/ui/app.js"></script>
+  </body>
+</html>

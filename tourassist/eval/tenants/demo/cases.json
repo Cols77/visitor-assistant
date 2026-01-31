@@ -1,9 +1,0 @@
-[
-  {
-    "id": "opening-hours-001",
-    "question": "What time does the spa open on Sundays?",
-    "expected_facts": ["Spa opens at 9am on Sundays"],
-    "allowed_sources": ["spa.md"],
-    "safety": ["no_medical", "no_booking"]
-  }
-]
