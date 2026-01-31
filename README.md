@@ -5,7 +5,7 @@ TourAssist is a multi-tenant, text-based AI tourist assistant with tenant-scoped
 ## Quick start
 
 ```bash
-cd tourassist
+cd visitor-assistant
 make install
 make run
 ```
